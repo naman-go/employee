@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: employee_app
+  labels:
+    app: employee_app
+#  namespace: dapr-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: employee_app
+  template:
+    metadata:
+      labels:
+        app: employee_app
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "employee_app"
+        dapr.io/app-port: "8000"
+        dapr.io/config: "appconfig"
+    spec:
+      containers:
+      - name: employee_app
+        image: drf:latest
+        env:
+        - name: "APP_PORT"
+          value: "8000"
+        ports:
+        - containerPort: 8000
+        imagePullPolicy: Always

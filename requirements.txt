@@ -1,0 +1,21 @@
+# Django
+# ------------------------------------------------------------------------------
+django==4.2.5
+djangorestframework==3.14.0
+django-cors-headers==4.2.0  # https://github.com/adamchainz/django-cors-headers
+gunicorn==21.2.0
+drf-spectacular==0.26.5  # https://github.com/tfranzel/drf-spectacular
+drf-standardized-errors==0.12.5  # https://github.com/ghazi-git/drf-standardized-errors
+dapr==1.11.0  # https://github.com/dapr/python-sdk
+psycopg2-binary==2.9.9  # https://github.com/psycopg/psycopg2
+django-environ==0.11.2  # https://github.com/joke2k/django-environ
+loguru==0.7.2  # https://github.com/Delgan/loguru
+
+# Code quality
+# ------------------------------------------------------------------------------
+flake8==6.1.0  # https://github.com/PyCQA/flake8
+flake8-isort==6.1.0  # https://github.com/gforcada/flake8-isort
+coverage==7.3.1  # https://github.com/nedbat/coveragepy
+black==23.9.1  # https://github.com/psf/black
+pylint-django==2.5.3  # https://github.com/PyCQA/pylint-django
+pre-commit==3.4.0  # https://github.com/pre-commit/pre-commit

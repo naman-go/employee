@@ -1,0 +1,25 @@
+version: '3'
+
+volumes:
+  employee_management_local_postgres_data: {}
+
+services:
+  django:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: neo_employee_management:latest
+    container_name: neo_employee_management
+    depends_on:
+      - postgres
+    volumes:
+      - .:/app:z
+    ports:
+      - '8000:8000'
+
+  postgres:
+    image: postgres:15
+    volumes:
+      - employee_management_local_postgres_data:/var/lib/postgresql/data
+    env_file:
+      - .env
