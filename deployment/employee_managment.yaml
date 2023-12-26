@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: employee-management-app
+  labels:
+    app: employee-management-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: employee-management-app
+  template:
+    metadata:
+      labels:
+        app: employee-management-app
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "employee-management-app"
+        dapr.io/app-port: "8000"
+        dapr.io/config: "daprconfig"
+    spec:
+      containers:
+      - name: employee-management-app
+        image: clootrackneo.azurecr.io/neo/employee_management:latest
+        envFrom:
+        - configMapRef:
+            name: employee-management-config
+        ports:
+        - containerPort: 8000
+        imagePullPolicy: Always
+
