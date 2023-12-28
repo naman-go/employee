@@ -35,8 +35,8 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_CONTAINER_REGISTRY: "clootrackdevciacr01.azurecr.io"
-  CONTAINER_NAME: "your-container-name"
+  AZURE_CONTAINER_REGISTRY: "clootrackdevciacr01"
+  CONTAINER_NAME: "employee"
   RESOURCE_GROUP: "clootrack-dev-ci-data-rg"
   CLUSTER_NAME: "clootrack-dev-ci-aks-01"
   DEPLOYMENT_MANIFEST_PATH: "employee/deployment"
