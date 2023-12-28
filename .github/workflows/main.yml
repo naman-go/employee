@@ -29,7 +29,7 @@ jobs:
           tenant: ${{ secrets.tenant }}
           registry: ${{ secrets.registry }}
           repository: ${{ secrets.repository }}
-          image:  employee
+          image:  employee_management
           folder: employee-v1
           branch: master
           tag: ${{ github.sha }}
