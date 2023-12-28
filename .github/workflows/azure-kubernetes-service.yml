@@ -35,11 +35,11 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_CONTAINER_REGISTRY: "your-azure-container-registry"
+  AZURE_CONTAINER_REGISTRY: "clootrackdevciacr01.azurecr.io"
   CONTAINER_NAME: "your-container-name"
-  RESOURCE_GROUP: "your-resource-group"
-  CLUSTER_NAME: "your-cluster-name"
-  DEPLOYMENT_MANIFEST_PATH: "your-deployment-manifest-path"
+  RESOURCE_GROUP: "clootrack-dev-ci-data-rg"
+  CLUSTER_NAME: "clootrack-dev-ci-aks-01"
+  DEPLOYMENT_MANIFEST_PATH: "employee/deployment"
 
 jobs:
   buildImage:
