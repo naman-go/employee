@@ -30,7 +30,7 @@ jobs:
           registry: ${{ secrets.registry }}
           repository: ${{ secrets.repository }}
           image:  employee_management
-          folder: employee-v1
+          folder: employee
           branch: master
           tag: ${{ github.sha }}
       
