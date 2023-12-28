@@ -10,11 +10,16 @@ jobs:
     steps:
       - name: Checkout source code 
         uses: actions/checkout@v3
-      - name: Azure login
-        id: login
-        uses: azure/login@v1.4.3
+      # - name: Azure login
+      #   id: login
+      #   uses: azure/login@v1.4.3
+      #   with:
+      #     creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - uses: azure/docker-login@v1
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          login-server: ${{ secrets.ACR_LOGIN_SERVER }} # default: index.docker.io
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
       - name: ACR build
         id: build-push-acr
         uses: azure/acr-build@v1
@@ -33,6 +38,7 @@ jobs:
         id: set-context
         uses: azure/aks-set-context@v3
         with:
+          creds: '${{ secrets.AZURE_CREDENTIALS }}'
           resource-group: '${{ secrets.resource_group }}' 
           cluster-name: '${{ secrets.cluster_name }}'
       - name: Setup kubectl
