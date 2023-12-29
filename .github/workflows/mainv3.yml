@@ -31,9 +31,11 @@ jobs:
 
       - name: Push Docker Image to ACR
         run: |
-          docker tag employeev2:latest clootrackdevciacr01.azurecr.io/employeev2:latest
-          docker push clootrackdevciacr01.azurecr.io/employeev2:latest
-
+         # docker tag employeev2:latest clootrackdevciacr01.azurecr.io/employeev2:latest
+         # docker push clootrackdevciacr01.azurecr.io/employeev2:latest
+         docker build . -t ${{ secrets.ACR_USERNAME }}.azurecr.io/k8sdemo:${{ github.sha }}
+         docker push ${{ secrets.ACR_USERNAME }}.azurecr.io/k8sdemo:${{ github.sha }}
+         
       - name: Azure AKS Set Context
         uses: azure/aks-set-context@v1
         with:
