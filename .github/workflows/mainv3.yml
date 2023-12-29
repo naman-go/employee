@@ -37,7 +37,7 @@ jobs:
          docker push ${{ secrets.ACR_USERNAME }}.azurecr.io/k8sdemo:${{ github.sha }}
          
       - name: Azure AKS Set Context
-        uses: azure/aks-set-context@v1
+        uses: Azure/aks-set-context@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
           cluster-name: clootrack-dev-ci-aks-01
