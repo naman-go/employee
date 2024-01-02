@@ -49,3 +49,6 @@ jobs:
         run: |
           kubectl apply -f deployment/employee_managment.yaml
           kubectl apply -f deployment/employee_managment_configmap.yaml
+             with:
+             images: |
+                   ${{ secrets.ACR_USERNAME }}.azurecr.io//k8sdemo:${{ github.sha }}
