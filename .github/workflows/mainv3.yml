@@ -36,22 +36,16 @@ jobs:
          docker build . -t ${{ secrets.ACR_USERNAME }}.azurecr.io/k8sdemo:${{ github.sha }}
          docker push ${{ secrets.ACR_USERNAME }}.azurecr.io/k8sdemo:${{ github.sha }}
          
-      - name: Set up Kubernetes configuration
-        run: echo "${{ secrets.KUBE_CONFIG_DATA }}" > kubeconfig.yaml
-
-      - name: Deploy to Kubernetes
-        run: |
-          kubectl apply -f deployment/employee_managment.yaml --validate=true
-          kubectl apply -f deployment/employee_managment_configmap.yaml --validate=true
+  
           
-     # - name: Azure AKS Set Context
-      #  uses: Azure/aks-set-context@v1
-       # with:
-         # creds: ${{ secrets.AZURE_CREDENTIALS }}
-          #cluster-name: democluster
-          #resource-group: aks-rg
+      - name: Azure AKS Set Context
+        uses: Azure/aks-set-context@v1
+          with:
+           creds: ${{ secrets.AZURE_CREDENTIALS }}
+           cluster-name: democluster
+           resource-group: aks-rg
 
-     # - name: Kubectl Apply
-      #  run: |
-       #   kubectl apply -f deployment/employee_managment.yaml
-        #  kubectl apply -f deployment/employee_managment_configmap.yaml
+     - name: Kubectl Apply
+        run: |
+          kubectl apply -f deployment/employee_managment.yaml
+          kubectl apply -f deployment/employee_managment_configmap.yaml
