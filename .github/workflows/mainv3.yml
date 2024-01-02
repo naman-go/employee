@@ -35,8 +35,6 @@ jobs:
          # docker push demoregistry6789.azurecr.io/employeev2:latest
          docker build . -t ${{ secrets.ACR_USERNAME }}.azurecr.io/k8sdemo:${{ github.sha }}
          docker push ${{ secrets.ACR_USERNAME }}.azurecr.io/k8sdemo:${{ github.sha }}
-         
-  
           
       - name: Azure AKS Set Context
         uses: Azure/aks-set-context@v1
@@ -45,10 +43,10 @@ jobs:
            cluster-name: democluster
            resource-group: aks-rg
 
-     - name: Kubectl Apply
-        run: |
-          kubectl apply -f deployment/employee_managment.yaml
-          kubectl apply -f deployment/employee_managment_configmap.yaml
-             with:
-             images: |
-                   ${{ secrets.ACR_USERNAME }}.azurecr.io//k8sdemo:${{ github.sha }}
+      - name: Kubectl Apply
+         run: |
+           kubectl apply -f deployment/employee_managment.yaml
+            kubectl apply -f deployment/employee_managment_configmap.yaml
+              with:
+                 images: |
+                      ${{ secrets.ACR_USERNAME }}.azurecr.io//k8sdemo:${{ github.sha }}
