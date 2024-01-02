@@ -46,3 +46,4 @@ jobs:
       - name: Kubectl Apply
         run: |
           kubectl apply -f deployment/employee_managment.yaml
+          kubectl apply -f employee_managment_configmap.yaml
