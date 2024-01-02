@@ -39,7 +39,7 @@ jobs:
         uses: Azure/aks-set-context@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-          cluster-name: democluster
+          cluster-name: democluster1
           resource-group: aks-rg
 
       - name: Kubectl Apply
