@@ -11,8 +11,7 @@ spec:
   - host: rishi.raaonezone.com
     http:
       paths:
-   #   - path: /api/v1.0/employees
-      - path: /test
+      - path: /api/v1.0/employees
         pathType: Prefix
         backend:
           service:
