@@ -47,12 +47,13 @@ jobs:
           echo "Original Content:"
           cat deployment/employee_managment.yaml
 
-      - name: Update Image Reference
-        run: |
-          $oldRef = "clootrackdevciacr0.azurecr.io/k8sdemo:85f7aa84937ece4face89b8046a54f12a7f05906"
-          $newRef = "${{ secrets.ACR_USERNAME }}.azurecr.io/k8sdemo:${{ github.sha }}"
-          $content = (Get-Content -Path "deployment/employee_managment.yaml") -replace [regex]::Escape($oldRef), $newRef
-          $content | Set-Content -Path "deployment/employee_managment.yaml"
+      - name: Replace Image Reference in Deployment YAML
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          args: |
+            -s "clootrackdevciacr01.azurecr.io/k8sdemo:85f7aa84937ece4face89b8046a54f12a7f05906" \
+            -r "clootrackdevciacr01.azurecr.io/k8sdemo:${{ github.sha }}" /
+            -i deployment/employee_managment.yaml
 
       - name: Print Updated Content
         run: |
