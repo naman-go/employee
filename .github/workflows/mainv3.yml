@@ -44,7 +44,8 @@ jobs:
 
       - name: Update Image Reference
         run: |
-           sed -i "s|clootrackdevciacr01.azurecr.io/k8sdemo:85f7aa84937ece4face89b8046a54f12a7f05906|${{ secrets.ACR_USERNAME }}.azurecr.io/k8sdemo:${{ github.sha }}|g" deployment/employee_managment.yaml
+           (Get-Content -Path "deployment/employee_managment.yaml") | ForEach-Object {$_ -replace 'clootrackdevciacr0.azurecr.io/k8sdemo:85f7aa84937ece4face89b8046a54f12a7f05906', 'clootrackdevciacr0.azurecr.io/k8sdemo::${{ github.sha }}'} | Set-Content -Path "deployment/employee_managment.yaml"
+
 
 
       - name: Kubectl Apply
