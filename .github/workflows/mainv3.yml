@@ -42,9 +42,11 @@ jobs:
           cluster-name: clootrack-dev-ci-aks-01
           resource-group: clootrack-dev-ci-data-rg
 
-      - name: Update Image Reference
-        run: |
-           (Get-Content -Path "deployment/employee_managment.yaml") | ForEach-Object {$_ -replace 'clootrackdevciacr0.azurecr.io/k8sdemo:85f7aa84937ece4face89b8046a54f12a7f05906', 'clootrackdevciacr0.azurecr.io/k8sdemo::${{ github.sha }}'} | Set-Content -Path "deployment/employee_managment.yaml"
+     - name: Update Image Reference
+       run: |
+         $oldRef = "clootrackdevciacr0.azurecr.io/k8sdemo:85f7aa84937ece4face89b8046a54f12a7f05906"
+         $newRef = "clootrackdevciacr0.azurecr.io/k8sdemo:${{ github.sha }}"
+         (Get-Content -Path "deployment/employee_managment.yaml") -replace [regex]::Escape($oldRef), $newRef | Set-Content -Path "deployment/employee_managment.yaml"
 
 
 
