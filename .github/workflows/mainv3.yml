@@ -49,7 +49,7 @@ jobs:
 
       - name: Replace Image Reference in Deployment YAML
         run: |
-          $oldRef = "clootrackdevciacr01.azurecr.io/k8sdemo:85f7aa84937ece4face89b8046a54f12a7f05906"
+          $oldRef = "clootrackdevciacr01.azurecr.io/k8sdemo:latest"
           $newRef = "${{ secrets.ACR_USERNAME }}.azurecr.io/k8sdemo:${{ github.sha }}"
           $filePath = "deployment/employee_managment.yaml"
 
