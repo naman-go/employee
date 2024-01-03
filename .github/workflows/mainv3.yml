@@ -44,7 +44,7 @@ jobs:
 
       - name: Update Image Reference
           run:|
-          sed -i "s|clootrackdevciacr01.azurecr.io/k8sdemo:85f7aa84937ece4face89b8046a54f12a7f05906|${{ secrets.ACR_USERNAME }}.azurecr.io/k8sdemo:${{ github.sha }}|g" deployment/employee_managment.yaml
+           sed -i "s|clootrackdevciacr01.azurecr.io/k8sdemo:85f7aa84937ece4face89b8046a54f12a7f05906|${{ secrets.ACR_USERNAME }}.azurecr.io/k8sdemo:${{ github.sha }}|g" deployment/employee_managment.yaml
 
 
       - name: Kubectl Apply
