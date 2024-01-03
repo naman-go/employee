@@ -24,13 +24,13 @@ jobs:
       - name: Log in to Azure Container Registry
         uses: azure/docker-login@v1
         with:
-          login-server: demoregistry6789.azurecr.io
+          login-server: clootrackdevciacr01.azurecr.io
           username: ${{ secrets.ACR_USERNAME }}
           password: ${{ secrets.ACR_PASSWORD }}
 
       - name: Push Docker Image to ACR
         run: |
-         # docker tag employeev2:latest demoregistry6789.azurecr.io/employeev2:latest
+         # docker tag employeev2:latest clootrackdevciacr01.azurecr.io/employeev2:latest
          # docker push demoregistry6789.azurecr.io/employeev2:latest
          docker build . -t ${{ secrets.ACR_USERNAME }}.azurecr.io/k8sdemo:${{ github.sha }}
          docker push ${{ secrets.ACR_USERNAME }}.azurecr.io/k8sdemo:${{ github.sha }}
@@ -39,8 +39,8 @@ jobs:
         uses: Azure/aks-set-context@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-          cluster-name: democluster1
-          resource-group: aks-rg
+          cluster-name: clootrack-dev-ci-aks-01
+          resource-group: clootrack-dev-ci-data-rg
 
       - name: Kubectl Apply
         run: |
