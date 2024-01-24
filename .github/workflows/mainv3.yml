@@ -49,13 +49,13 @@ jobs:
 
       - name: Replace Image Reference in Deployment YAML
         run: |
-          $oldRef = "githubreg567.azurecr.io/k8sdemo:latest"
-          $newRef = "${{ secrets.ACR_USERNAME }}.azurecr.io/k8sdemo:${{ github.sha }}"
-          $filePath = "deployment/employee_managment.yaml"
+           oldRef="githubreg567.azurecr.io/k8sdemo:latest"
+           newRef="${ACR_USERNAME}.azurecr.io/k8sdemo:${GITHUB_SHA}"
+           filePath="deployment/employee_managment.yaml"
 
-          $content = Get-Content -Path $filePath
-          $updatedContent = $content -replace [regex]::Escape($oldRef), $newRef
-          $updatedContent | Set-Content -Path $filePath
+           content=$(<"$filePath")
+           updatedContent=$(echo "$content" | sed "s|$(printf '%s\n' "$oldRef" | sed -e 's/[]\/$*.^[]/\\&/g')|$newRef|g")
+           echo "$updatedContent" > "$filePath"
 
       - name: Print Updated Content
         run: |
