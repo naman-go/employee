@@ -22,7 +22,7 @@ spec:
       containers:
       - name: employee-management-app
       #  image: clootrackneo.azurecr.io/neo/employee_management:latest
-        image: clootrackdevciacr01.azurecr.io/k8sdemo:latest
+        image: githubreg567.azurecr.io/k8sdemo:latest
         envFrom:
         - configMapRef:
             name: employee-management-config
